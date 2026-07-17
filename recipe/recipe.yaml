@@ -27,11 +27,13 @@ build:
 requirements:
   build:
     - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
     - ${{ stdlib("c") }}
     - make
     - cmake
     - pkg-config
     - gettext
+    - scdoc
     - if: osx
       then: llvm-openmp
     - if: linux
@@ -40,17 +42,14 @@ requirements:
     - if: linux
       then:
         - python
-        - pip
         - elfutils
     - libarchive
     - if: linux
       then: libcap
-    - libgcrypt
-    - lmdb
+    - libsqlite
     - lua
-    - nss
     - popt
-    - libdb
+    - readline
     - zstd
     - liblzma-devel
     - bzip2
@@ -64,7 +63,6 @@ requirements:
       then:
         - python
         - ${{ pin_compatible('elfutils') }}
-    - ${{ pin_compatible('nss') }}
     - ${{ pin_compatible('file') }}
 
 tests:
